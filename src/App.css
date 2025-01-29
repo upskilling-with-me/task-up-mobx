@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.todo-board {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.add-todo {
+    display: flex;
+    justify-content: center;
+    font-size: large;
+}
+
+.show-todo {
+    display: flex;
+    flex-direction: column;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin-bottom: 10px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: space-between;
+}
