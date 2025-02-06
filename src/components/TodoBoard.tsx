@@ -3,8 +3,10 @@ import { TodoListStore } from "src/Stores/TodoListStore";
 import { ShowTodos } from "./ShowTodos";
 import { AddTodo } from "./AddTodo";
 
+// Sample default todo titles for the TodoListStore to start with.
+const defaultTodoTitles = ["Buy groceries", "Wash Car", "Cook Rice"];
+
 const TodoBoard = () => {
-	const defaultTodoTitles = ["Buy groceries", "Wash Car", "Cook Rice"];
 	const todoListStore = new TodoListStore();
 
 	const todos: Todo[] = defaultTodoTitles.map((title) => new Todo(title));
