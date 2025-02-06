@@ -22,8 +22,9 @@ export class TodoListStore {
 		this.todos = defaultTodoTitles.map((title) => new Todo(title));
 	}
 
-	addTodo(todo: Todo) {
-		this.todos.push(todo);
+	addTodo(title: string) {
+		if (title === "") return;
+		this.todos.push(new Todo(title));
 	}
 
 	deleteTodo(id: number) {

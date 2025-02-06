@@ -3,8 +3,9 @@ import { Todo } from "src/models/Todo";
 
 export const AddTodo = ({ todoListStore }) => {
 	const [title, setTitle] = useState("");
+
 	const handleOnClick = () => {
-		todoListStore.addTodo(new Todo(title));
+		todoListStore.addTodo(title);
 		setTitle("");
 	};
 
