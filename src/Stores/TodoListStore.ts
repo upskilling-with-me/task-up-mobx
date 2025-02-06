@@ -1,5 +1,8 @@
 import { makeObservable, observable, action, computed } from "mobx";
-import type { Todo } from "../models/Todo";
+import { Todo } from "../models/Todo";
+
+// Sample default todo titles for the TodoListStore to start with.
+const defaultTodoTitles = ["Buy groceries", "Wash Car", "Cook Rice"];
 
 export class TodoListStore {
 	todos: Todo[] = [];
@@ -15,6 +18,8 @@ export class TodoListStore {
 			unCompleteTodosCount: computed,
 			totalTodosCount: computed,
 		});
+
+		this.todos = defaultTodoTitles.map((title) => new Todo(title));
 	}
 
 	addTodo(todo: Todo) {
@@ -22,7 +27,7 @@ export class TodoListStore {
 	}
 
 	deleteTodo(id: number) {
-		this.todos = this.todos.filter((t) => t.id!== id);
+		this.todos = this.todos.filter((t) => t.id !== id);
 	}
 
 	get completedTodos() {
