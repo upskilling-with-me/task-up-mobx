@@ -4,20 +4,23 @@ import type { Todo } from "src/models/Todo";
 interface TodoItemProps {
 	todo: Todo;
 	onDelete: (id: number) => void;
+	onToggle: (id: number) => void;
 }
 
-export const TodoItem = observer(({ todo, onDelete }: TodoItemProps) => {
-	return (
-		<li>
-			<input
-				type="checkbox"
-				checked={todo.completed}
-				onChange={() => todo.toggle()}
-			/>
-			{todo.title}
-			<button type="button" onClick={() => onDelete(todo.id)}>
-				Delete
-			</button>
-		</li>
-	);
-});
+export const TodoItem = observer(
+	({ todo, onDelete, onToggle }: TodoItemProps) => {
+		return (
+			<li>
+				<input
+					type="checkbox"
+					checked={todo.completed}
+					onChange={() => onToggle(todo.id)}
+				/>
+				{todo.title}
+				<button type="button" onClick={() => onDelete(todo.id)}>
+					Delete
+				</button>
+			</li>
+		);
+	},
+);

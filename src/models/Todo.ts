@@ -9,12 +9,7 @@ export class Todo {
 		makeObservable(this, {
 			title: observable,
 			completed: observable,
-			toggle: action,
 		});
 		this.title = title;
-	}
-
-	toggle() {
-		this.completed = !this.completed;
 	}
 }

@@ -13,6 +13,10 @@ export const TodoList = observer(({ todoListStore }: TodoListProps) => {
 		todoListStore.deleteTodo(id);
 	};
 
+	const handleOnToggle = (id: number) => {
+		todoListStore.toggleTodo(id);
+	};
+
 	const handleOnSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		todoListStore.setFilter(e.target.value as TodoFilters);
 	};
@@ -34,7 +38,7 @@ export const TodoList = observer(({ todoListStore }: TodoListProps) => {
 
 			<ul>
 				{todoListStore.getTodos.map((todo) => (
-					<TodoItem todo={todo} key={todo.id} onDelete={handleOnDelete} />
+					<TodoItem todo={todo} key={todo.id} onDelete={handleOnDelete} onToggle={handleOnToggle} />
 				))}
 			</ul>
 		</div>
