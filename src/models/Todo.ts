@@ -1,4 +1,4 @@
-import { makeObservable, observable, action } from "mobx";
+import { makeObservable, observable } from "mobx";
 
 export class Todo {
 	id = Math.floor(Math.random() * 1000 + 1);

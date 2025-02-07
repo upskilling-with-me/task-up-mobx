@@ -1,5 +1,5 @@
 import "./App.css";
-import TodoBoard from "./components/TodoBoard";
+import { TodoBoard } from "./components/TodoBoard";
 
 const App = () => {
 	return (

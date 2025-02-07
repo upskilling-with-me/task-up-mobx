@@ -3,12 +3,6 @@
     justify-content: center;
 }
 
-.todo-board {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
 .add-todo {
     display: flex;
     justify-content: center;

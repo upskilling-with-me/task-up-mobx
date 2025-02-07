@@ -1,11 +1,14 @@
 import { useState } from "react";
+import styled from "styled-components";
 
 export const AddTodo = ({ todoListStore }) => {
 	const [title, setTitle] = useState("");
 
 	const handleOnClick = () => {
-		todoListStore.addTodo(title);
-		setTitle("");
+		if (title.trim()) {
+			todoListStore.addTodo(title);
+			setTitle("");
+		}
 	};
 
 	const handleInputChange = (e) => {
@@ -13,16 +16,50 @@ export const AddTodo = ({ todoListStore }) => {
 	};
 
 	return (
-		<div className="add-todo">
-			<input
+		<TodoInput>
+			<Input
 				type="text"
-				placeholder="Add Todo..."
+				placeholder="Add a new task..."
 				value={title}
 				onChange={handleInputChange}
 			/>
-			<button type="button" onClick={handleOnClick}>
-				Add
-			</button>
-		</div>
+			<Button onClick={handleOnClick}>Add</Button>
+		</TodoInput>
 	);
 };
+
+const TodoInput = styled.div`
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
+	background: #f9f9f9;
+	padding: 10px;
+	border-radius: 8px;
+`;
+
+const Input = styled.input`
+	flex: 1;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	font-size: 14px;
+
+	&:focus {
+		outline: none;
+		border-color: #4caf50;
+	}
+`;
+
+const Button = styled.button`
+	padding: 10px 20px;
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background 0.2s ease-in-out;
+
+	&:hover {
+		background-color: #45a049;
+	}
+`;
