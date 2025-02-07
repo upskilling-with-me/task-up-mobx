@@ -1,29 +1,40 @@
 import { observer } from "mobx-react-lite";
-import type { TodoListStore } from "src/Stores/TodoListStore";
+import type { TodoListStore, TodoFilters } from "src/Stores/TodoListStore";
 import { TodoItem } from "./TodoItem";
 
 interface TodoListProps {
 	todoListStore: TodoListStore;
 }
 
+const FILTERS: TodoFilters[] = ["all", "completed", "uncompleted"];
+
 export const TodoList = observer(({ todoListStore }: TodoListProps) => {
 	const handleOnDelete = (id: number) => {
 		todoListStore.deleteTodo(id);
 	};
 
+	const handleOnSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		todoListStore.setFilter(e.target.value as TodoFilters);
+	};
+
 	return (
 		<div>
-			<h2>Total Todos: {todoListStore.totalTodosCount}</h2>
-			<h2>Uncompleted todos: {todoListStore.unCompleteTodosCount}</h2>
+			<div>
+				<h3>
+					Todos: {todoListStore.getTodos.length} / {todoListStore.getTotalTodos}
+				</h3>
+				<select onChange={handleOnSelect} value={todoListStore.filter}>
+					{FILTERS.map((filter) => (
+						<option key={filter} value={filter}>
+							{filter}
+						</option>
+					))}
+				</select>
+			</div>
+
 			<ul>
-				{todoListStore.unCompletedTodos.map((todo) => (
+				{todoListStore.getTodos.map((todo) => (
 					<TodoItem todo={todo} key={todo.id} onDelete={handleOnDelete} />
-				))}
-			</ul>
-			<h2>Completed todos: {todoListStore.completeTodosCount}</h2>
-			<ul>
-				{todoListStore.completedTodos.map((todo) => (
-					<TodoItem todo={todo} key={todo.id} />
 				))}
 			</ul>
 		</div>
