@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Todo } from "src/models/Todo";
 
 export const AddTodo = ({ todoListStore }) => {
 	const [title, setTitle] = useState("");
