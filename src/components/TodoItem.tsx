@@ -7,20 +7,22 @@ interface TodoItemProps {
 	onToggle: (id: number) => void;
 }
 
-export const TodoItem = observer(
-	({ todo, onDelete, onToggle }: TodoItemProps) => {
-		return (
-			<li>
-				<input
-					type="checkbox"
-					checked={todo.completed}
-					onChange={() => onToggle(todo.id)}
-				/>
-				{todo.title}
-				<button type="button" onClick={() => onDelete(todo.id)}>
-					Delete
-				</button>
-			</li>
-		);
-	},
-);
+export const TodoItem = observer(function TodoItem({
+	todo,
+	onDelete,
+	onToggle,
+}: TodoItemProps) {
+	return (
+		<li>
+			<input
+				type="checkbox"
+				checked={todo.completed}
+				onChange={() => onToggle(todo.id)}
+			/>
+			{todo.title}
+			<button type="button" onClick={() => onDelete(todo.id)}>
+				Delete
+			</button>
+		</li>
+	);
+});

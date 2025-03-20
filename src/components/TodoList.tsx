@@ -9,7 +9,9 @@ interface TodoListProps {
 
 const FILTERS: TodoFilters[] = ["all", "completed", "uncompleted"];
 
-export const TodoList = observer(({ todoListStore }: TodoListProps) => {
+export const TodoList = observer(function TodoList({
+	todoListStore,
+}: TodoListProps) {
 	const handleOnDelete = (id: number) => {
 		todoListStore.deleteTodo(id);
 	};
