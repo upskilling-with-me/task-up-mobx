@@ -5,7 +5,11 @@ import { TodoList } from "./TodoList";
 import styled from "styled-components";
 
 export const TodoBoard = () => {
-	const todoListStoreRef = useRef(new TodoListStore());
+	const todoListStoreRef = useRef<TodoListStore | null>(null);
+
+	if (!todoListStoreRef.current) {
+		todoListStoreRef.current = new TodoListStore();
+	}
 
 	return (
 		<Container>
