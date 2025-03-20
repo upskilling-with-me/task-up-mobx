@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { TodoListStore } from "src/Stores/TodoListStore";
+import { TodoListStore } from "src/stores/TodoListStore";
 import { AddTodo } from "./AddTodo";
 import { TodoList } from "./TodoList";
 import styled from "styled-components";
