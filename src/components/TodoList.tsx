@@ -1,17 +1,14 @@
 import { observer } from "mobx-react-lite";
-import type { TodoListStore, TodoFilters } from "src/stores/TodoListStore";
+import type { TodoFilters } from "src/stores/TodoListStore";
 import { TodoItem } from "./TodoItem";
 import styled from "styled-components";
-
-interface TodoListProps {
-	todoListStore: TodoListStore;
-}
+import { useTodoListStore } from "src/stores/TodoListContext";
 
 const FILTERS: TodoFilters[] = ["all", "completed", "uncompleted"];
 
-export const TodoList = observer(function TodoList({
-	todoListStore,
-}: TodoListProps) {
+export const TodoList = observer(function TodoList() {
+	const todoListStore = useTodoListStore();
+
 	const handleOnDelete = (id: number) => {
 		todoListStore.deleteTodo(id);
 	};

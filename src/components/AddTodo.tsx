@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useTodoListStore } from "src/stores/TodoListContext";
 import styled from "styled-components";
 
-export const AddTodo = ({ todoListStore }) => {
+export const AddTodo = () => {
 	const [title, setTitle] = useState("");
+	const todoListStore = useTodoListStore();
 
 	const handleOnClick = () => {
 		if (title.trim()) {

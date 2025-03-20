@@ -1,10 +1,13 @@
 import "./App.css";
 import { TodoBoard } from "./components/TodoBoard";
+import { TodoListProvider } from "./stores/TodoListContext";
 
 const App = () => {
 	return (
 		<div className="container">
-			<TodoBoard />
+			<TodoListProvider>
+				<TodoBoard />
+			</TodoListProvider>
 		</div>
 	);
 };

@@ -1,21 +1,13 @@
-import { useRef } from "react";
-import { TodoListStore } from "src/stores/TodoListStore";
 import { AddTodo } from "./AddTodo";
 import { TodoList } from "./TodoList";
 import styled from "styled-components";
 
 export const TodoBoard = () => {
-	const todoListStoreRef = useRef<TodoListStore | null>(null);
-
-	if (!todoListStoreRef.current) {
-		todoListStoreRef.current = new TodoListStore();
-	}
-
 	return (
 		<Container>
 			<Title>Welcome to your Todo Board</Title>
-			<AddTodo todoListStore={todoListStoreRef.current} />
-			<TodoList todoListStore={todoListStoreRef.current} />
+			<AddTodo />
+			<TodoList />
 		</Container>
 	);
 };
