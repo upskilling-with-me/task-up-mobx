@@ -7,7 +7,7 @@ import { useTodoListStore } from "src/stores/TodoListContext";
 const FILTERS: TodoFilters[] = ["all", "completed", "uncompleted"];
 
 export const TodoList = observer(function TodoList() {
-	const todoListStore = useTodoListStore();
+	const { todoListStore } = useTodoListStore();
 
 	const handleOnDelete = (id: number) => {
 		todoListStore.deleteTodo(id);

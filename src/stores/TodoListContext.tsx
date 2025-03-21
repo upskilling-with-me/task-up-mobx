@@ -1,7 +1,14 @@
 import { createContext, useContext } from "react";
 import { TodoListStore } from "./TodoListStore";
 
-const TodoListContext = createContext<TodoListStore | null>(null);
+const TodoListContext = createContext<{
+	todoListStore: TodoListStore;
+	handleOnEnter: (
+		event: React.KeyboardEvent<HTMLInputElement>,
+		title: string,
+		clearInput: () => void,
+	) => void;
+} | null>(null);
 
 export const useTodoListStore = () => {
 	const context = useContext(TodoListContext);
@@ -12,10 +19,21 @@ export const useTodoListStore = () => {
 };
 
 export const TodoListProvider = ({ children }) => {
-	const store = new TodoListStore();
+	const todoListStore = new TodoListStore();
+
+	const handleOnEnter = (
+		event: React.KeyboardEvent<HTMLInputElement>,
+		title: string,
+		clearTitle: () => void,
+	) => {
+		if (event.key === "Enter" && title.trim()) {
+			todoListStore.addTodo(title);
+			clearTitle();
+		}
+	};
 
 	return (
-		<TodoListContext.Provider value={store}>
+		<TodoListContext.Provider value={{ todoListStore, handleOnEnter }}>
 			{children}
 		</TodoListContext.Provider>
 	);

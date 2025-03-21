@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const AddTodo = () => {
 	const [title, setTitle] = useState("");
-	const todoListStore = useTodoListStore();
+	const { todoListStore, handleOnEnter } = useTodoListStore();
 
 	const handleOnClick = () => {
 		if (title.trim()) {
@@ -24,6 +24,7 @@ export const AddTodo = () => {
 				placeholder="Add a new task..."
 				value={title}
 				onChange={handleInputChange}
+				onKeyDown={(e) => handleOnEnter(e, title, () => setTitle(""))}
 			/>
 			<Button onClick={handleOnClick}>Add</Button>
 		</TodoInput>
